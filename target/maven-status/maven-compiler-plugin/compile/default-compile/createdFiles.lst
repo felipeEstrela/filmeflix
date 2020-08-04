@@ -1,0 +1,6 @@
+com/elo/filmeflix/service/MovieService.class
+com/elo/filmeflix/Application.class
+com/elo/filmeflix/model/MovieEntity.class
+com/elo/filmeflix/repository/MovieRepository.class
+com/elo/filmeflix/web/MovieController.class
+com/elo/filmeflix/exception/RecordNotFoundException.class
