@@ -1,0 +1,149 @@
+openapi: 3.0.0
+info:
+  title: FilmeFlix - ELO 
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://localhost:8080
+  variables: {}
+paths:
+  /movies:
+    post:
+      tags:
+      - Movies
+      summary: AddMovie
+      operationId: AddMovie
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddMovieRequest'
+            example:
+              title: Filme add
+              yearRelease: 2006
+              description: Testee
+              genre: Comédia
+              active: true
+        required: true
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  yearRelease:
+                    type: integer
+                  description:
+                    type: string
+                  genre:
+                    type: string
+                  active:
+                    type: boolean
+    get:
+      tags:
+      - Movies
+      summary: GetAllMovies
+      operationId: GetAllMovies
+      parameters: []
+      responses:
+        '200':
+          description: ''
+
+  /movies/updateStatus:
+    put:
+      tags:
+      - Movies
+      summary: UpdateStatus
+      operationId: UpdateStatus
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStatusRequest'
+            example:
+              id: 1
+              active: true
+        required: true
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /movies/2:
+    get:
+      tags:
+      - Movies
+      summary: GetMovie
+      operationId: GetMovie
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+  /movies/1:
+    delete:
+      tags:
+      - Movies
+      summary: DeleteMovie
+      operationId: DeleteMovie
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    AddMovieRequest:
+      title: AddMovieRequest
+      required:
+      - title
+      - yearRelease
+      - description
+      - genre
+      - active
+      type: object
+      properties:
+        title:
+          type: string
+        yearRelease:
+          type: integer
+          format: int32
+        description:
+          type: string
+        genre:
+          type: string
+        active:
+          type: boolean
+      example:
+        title: Filme add
+        yearRelease: 2006
+        description: Testee
+        genre: Comédia
+        active: true
+    UpdateStatusRequest:
+      title: UpdateStatusRequest
+      required:
+      - id
+      - active
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        active:
+          type: boolean
+      example:
+        id: 1
+        active: true
+tags:
+- name: Movies
+  description: ''
